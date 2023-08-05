@@ -1,11 +1,11 @@
-<h1 class="text-center">Grado y Arma del Oficial</h1>
+<h1 class="text-center">Grados y armas del Oficial</h1>
   <div class="row justify-content-center mt-5">
   <form class="col-lg-8 border bg-light p-3" id="formularioGrados">
   <input type="hidden" name="gra_id" id="gra_id">    
   <div class="row mb-3">
         <div class="col">
           <label for="gra_nombre">Ingrese un grado y arma</label>
-          <input type="text" name="gra_nombre" id="gra_nombre" class="form-control" required>
+          <input type="text" name="gra_nombre" id="gra_nombre" class="form-control">
         </div>
       </div>
       <div class="row mb-3">
