@@ -6,7 +6,7 @@ use Exception;
 use Model\Grados;
 use MVC\Router;
 
-class GradoController {
+class GradosController {
     public static function index(Router $router) {
         $grados = Grados::all();
         
