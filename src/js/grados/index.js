@@ -108,7 +108,7 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(grados.gra_id))
 
                 td1.innerText = contador;
-                td2.innerText = producto.gra_nombre
+                td2.innerText = grados.gra_nombre
                
                 
                 // ESTRUCTURANDO DOM
