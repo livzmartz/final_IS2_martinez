@@ -14,7 +14,8 @@ class Programadores extends ActiveRecord{
     public $prog_apellidos;
     public $prog_sit;
 
-    public function __construct($args = []) {
+    public function __construct($args = []) 
+    {
         $this->prog_id = $args['prog_id'] ?? null;
         $this->prog_correo = $args['prog_correo'] ?? '';
         $this->prog_grado = $args['prog_grado'] ?? '';

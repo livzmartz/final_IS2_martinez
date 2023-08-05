@@ -13,7 +13,8 @@ class Asignar extends ActiveRecord{
     public $asig_app;
     public $asig_sit;
 
-    public function __construct($args = []) {
+    public function __construct($args = []) 
+    {
         $this->asig_id = $args['asig_id'] ?? null;
         $this->asig_programador = $args['asig_programador'] ?? '';
         $this->asig_app = $args['asig_app'] ?? '';
