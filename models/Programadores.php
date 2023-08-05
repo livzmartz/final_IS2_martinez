@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Producto extends ActiveRecord{
+class Programadores extends ActiveRecord{
     public static $tabla = 'programadores';
     public static $columnasDB = ['prog_correo','prog_grado','prog_nombres','prog_apellidos','prog_sit'];
     public static $idTabla = 'prog_id';
