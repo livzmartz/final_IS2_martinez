@@ -29,12 +29,32 @@
   
                     <div class="nav-item dropdown " >
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-2"></i>Dropdown
+                            <i class="bi bi-gear me-2"></i>Menú
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-dark "id="dropwdownRevision" style="margin: 0;">
                             <!-- <h6 class="dropdown-header">Información</h6> -->
                             <li>
                                 <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/grados"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Grados y Armas</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/programadores"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Programadores</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/aplicaciones"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Aplicaciones</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/tareas"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Tareas</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/asignar"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Asignación App</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_martinez/detalle"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Detalle App</a>
                             </li>
                         
                     
@@ -45,7 +65,7 @@
                 </ul> 
                 <div class="col-lg-1 d-grid mb-lg-0 mb-2">
                     <!-- Ruta relativa desde el archivo donde se incluye menu.php -->
-                    <a href="/menu/" class="btn btn-danger"><i class="bi bi-arrow-bar-left"></i>MENÚ</a>
+                    <a href="/final_IS2_martinez/" class="btn btn-danger"><i class="bi bi-arrow-bar-left"></i>SALIR</a>
                 </div>
 
             
