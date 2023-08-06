@@ -18,7 +18,7 @@ class AplicacionController {
     public static function guardarAPI() {
         try {
             $aplicacion = new Aplicacion($_POST);
-            $resultado = $aplicacion->guardar();
+            $resultado = $aplicacion->crear();
 
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
