@@ -8,10 +8,10 @@ use MVC\Router;
 
 class AplicacionController {
     public static function index(Router $router) {
-        $aplicaciones = Aplicacion::all();
+        $aplicacion = Aplicacion::all();
         
         $router->render('aplicaciones/index', [
-            'aplicaciones' => $aplicaciones,
+            'aplicacion' => $aplicacion,
         ]);
     }
 
@@ -101,8 +101,8 @@ class AplicacionController {
         }
 
         try {
-            $aplicaciones = Aplicacion::fetchArray($sql);
-            echo json_encode($aplicaciones);
+            $aplicacion = Aplicacion::fetchArray($sql);
+            echo json_encode($aplicacion);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
