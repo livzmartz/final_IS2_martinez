@@ -81,7 +81,7 @@ const buscar = async () => {
 
         if (data.length > 0) {
             let contador = 1;
-            data.forEach(asignacion => {
+            data.forEach(asignar => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td');
@@ -98,12 +98,12 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar';
                 buttonEliminar.textContent = 'Eliminar';
 
-                buttonModificar.addEventListener('click', () => colocarDatos(asignacion));
-                buttonEliminar.addEventListener('click', () => eliminar(asignacion.asig_id));
+                buttonModificar.addEventListener('click', () => colocarDatos(asignar));
+                buttonEliminar.addEventListener('click', () => eliminar(asignar.asig_id));
 
                 td1.innerText = contador;
-                td2.innerText = asignacion.nombre;
-                td3.innerText = asignacion.app_nombre;
+                td2.innerText = asignar.nombre;
+                td3.innerText = asignar.app_nombre;
 
                 // ESTRUCTURANDO DOM
                 td4.appendChild(buttonModificar);
@@ -209,37 +209,46 @@ const modificar = async () => {
 };
 
 const eliminar = async (id) => {
-    if (await confirmacion('warning', '¿Desea eliminar este registro?')) {
-        const body = new FormData();
-        body.append('asig_id', id);
-        const url = '/final_IS2_martinez/API/asignar/eliminar'; 
+    const result = await Swal.fire({
+        icon: 'warning',
+        text: '¿Desea eliminar este registro?',
+        showCancelButton: true,
+        confirmButtonText: 'ELIMINAR',
+        cancelButtonText: 'CANCELAR',
+    });
+
+    if (result.isConfirmed) {
+        const body = new FormData()
+        body.append('asig_id', id)
+        const url = '/final_IS2_martinez/API/asignar/eliminar';
         const config = {
             method: 'POST',
             body
-        };
-        try {
-            const respuesta = await fetch(url, config);
-            const data = await respuesta.json();
+        }
 
+        try {
+            const respuesta = await fetch(url, config)
+            const data = await respuesta.json();
+            console.log(data)
             const { codigo, mensaje, detalle } = data;
 
-            let icon = 'info';
+            let icon = 'info'
             switch (codigo) {
                 case 1:
-                    icon = 'success';
+                    icon = 'success'
                     buscar();
                     break;
 
                 case 0:
-                    icon = 'error';
-                    console.log(detalle);
+                    icon = 'error'
+                    console.log(detalle)
                     break;
 
                 default:
                     break;
             }
 
-            Toast.fire({
+            Swal.fire({
                 icon,
                 text: mensaje
             });
@@ -248,7 +257,7 @@ const eliminar = async (id) => {
             console.log(error);
         }
     }
-};
+}
 
 buscar();
 formularioAsignar.addEventListener('submit', guardar);
