@@ -100,6 +100,7 @@ class AsignarController {
 
     public static function buscarAPI() {
      
+        try {
 
         $sql = "    select asig_id, gra_nombre || ' ' || prog_nombres || ' ' || prog_apellidos AS nombre, app_nombre from asig_programador
         inner join programadores on asig_programador = prog_id 
@@ -108,7 +109,6 @@ class AsignarController {
         ";
 
 
-        try {
             $asignar = Asignar::fetchArray($sql);
             echo json_encode($asignar);
         } catch (Exception $e) {
