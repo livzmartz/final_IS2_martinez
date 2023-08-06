@@ -10,7 +10,7 @@ class ProgramadoresController {
     public static function index(Router $router) {
         $programadores = Programadores::all();
         
-        $router->render('programadores/index', [
+        $router->render('programador/index', [
             'programadores' => $programadores,
         ]);
     }
