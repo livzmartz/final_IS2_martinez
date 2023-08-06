@@ -9,9 +9,14 @@ use MVC\Router;
 class AsignarController {
     public static function index(Router $router) {
     
-        
+        $programadores = static::BuscarProgramadores();
+        $aplicaciones = static::BuscarAplicaciones();
+
         $router->render('asignar/index', [
           
+            'programadores' => $programadores,
+            'aplicaciones' => $aplicaciones,
+
         ]);
     }
 
@@ -115,4 +120,33 @@ class AsignarController {
             ]);
         }
     }
+
+    public static function BuscarProgramadores(){
+
+        $sql = "SELECT * FROM programadores WHERE prog_sit = '1'";
+
+    try {
+        $programadores = Asignar::fetchArray($sql);
+        return $programadores;
+    } catch (Exception $e) {
+
+    }
+    
+}
+
+public static function BuscarAplicaciones(){
+
+    $sql = "SELECT * FROM aplicaciones WHERE app_estado = '1'";
+
+try {
+    $aplicaciones = Asignar::fetchArray($sql);
+    return $aplicaciones;
+} catch (Exception $e) {
+
+}
+
+}
+
+
+
 } 
