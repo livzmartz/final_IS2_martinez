@@ -4,7 +4,7 @@ namespace Model;
 
 class Asignar extends ActiveRecord{
 
-    public static $tabla = 'asig_programadores';
+    public static $tabla = 'asig_programador';
     public static $columnasDB = ['asig_programador','asig_app','asig_sit'];
     public static $idTabla = 'asig_id';
 

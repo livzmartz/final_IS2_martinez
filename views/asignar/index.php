@@ -1,3 +1,4 @@
+
 <h1 class="text-center">Asignación de Aplicaciones</h1>
 <div class="row justify-content-center mb-5">
     <form class="col-lg-8 border bg-light p-3" id="formularioAsignar">
@@ -6,8 +7,8 @@
         <label for="aplicacion">Seleccione una aplicación:</label>
         <select class="form-select" name="asig_app" id="asig_app" required>
           <option value="">Seleccionar aplicación</option>
-          <?php foreach ($Aplicacion as $apps) { ?>
-            <option value="<?php echo $apps['APP_ID']; ?>"><?php echo $apps['APP_NOMBRE']; ?></option>
+          <?php foreach ($aplicaciones as $apps) { ?>
+            <option value="<?php echo $apps['app_id']; ?>"><?php echo $apps['app_nombre']; ?></option>
           
           <?php } ?>
         </select>
@@ -16,8 +17,8 @@
         <label for="aplicacion">Seleccione un programador</label>
         <select class="form-select" name="asig_programador" id="asig_programador">
           <option value="">Seleccionar..</option>
-          <?php foreach ($progras as $apps) { ?>
-            <option value="<?php echo $apps['PROG_ID']; ?>"><?php echo $apps['NOMBRE']; ?></option>
+          <?php foreach ($programadores as $apps) { ?>
+            <option value="<?php echo $apps['prog_id']; ?>"><?php echo $apps['nombre']; ?></option>
           <?php } ?>
         </select>
       </div>

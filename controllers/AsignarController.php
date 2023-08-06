@@ -21,6 +21,7 @@ class AsignarController {
     }
 
     public static function guardarAPI() {
+      
         try {
             $asignar = new Asignar($_POST);
             $resultado = $asignar->guardar();
@@ -98,16 +99,14 @@ class AsignarController {
     }
 
     public static function buscarAPI() {
-        $asig_programador = $_GET['asig_programador'];
-        $asig_app = $_GET['asig_app'];
+     
 
-        $sql = "SELECT * FROM asig_programador WHERE asig_sit = '1'";
-        if ($asig_programador != '') {
-            $sql .= " AND asig_programador = $asig_programador";
-        }
-        if ($asig_app != '') {
-            $sql .= " AND asig_app = $asig_app";
-        }
+        $sql = "    select asig_id, gra_nombre || ' ' || prog_nombres || ' ' || prog_apellidos AS nombre, app_nombre from asig_programador
+        inner join programadores on asig_programador = prog_id 
+        inner join grados on gra_id = prog_grado
+        inner join aplicaciones on app_id = asig_app
+        ";
+
 
         try {
             $asignar = Asignar::fetchArray($sql);
@@ -123,7 +122,9 @@ class AsignarController {
 
     public static function BuscarProgramadores(){
 
-        $sql = "SELECT * FROM programadores WHERE prog_sit = '1'";
+        $sql = " select prog_id,  gra_nombre || ' ' || prog_nombres || ' ' || prog_apellidos AS nombre from programadores
+        inner join grados on gra_id = prog_grado
+ ";
 
     try {
         $programadores = Asignar::fetchArray($sql);
@@ -136,9 +137,9 @@ class AsignarController {
 
 public static function BuscarAplicaciones(){
 
+    try {
     $sql = "SELECT * FROM aplicaciones WHERE app_estado = '1'";
 
-try {
     $aplicaciones = Asignar::fetchArray($sql);
     return $aplicaciones;
 } catch (Exception $e) {

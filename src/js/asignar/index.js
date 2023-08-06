@@ -2,7 +2,7 @@ import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
-const formulario = document.getElementById('formulario');
+const formulario = document.getElementById('formularioAsignar');
 const tablaAsignar = document.getElementById('tablaAsignar');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
@@ -17,7 +17,7 @@ btnCancelar.parentElement.style.display = 'none';
 
 const guardar = async (evento) => {
     evento.preventDefault();
-    if (!validarFormulario(formulario, ['asig_id', 'asig_app', 'asig_programador'])) {
+    if (!validarFormulario(formulario, ['asig_id'])) {
         Toast.fire({
             icon: 'info',
             text: 'Debe llenar todos los datos'
@@ -76,7 +76,7 @@ const buscar = async () => {
     try {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-
+console.log(data)
         tablaAsignar.tBodies[0].innerHTML = '';
         const fragment = document.createDocumentFragment();
 
@@ -102,8 +102,8 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(asignacion.asig_id));
 
                 td1.innerText = contador;
-                td2.innerText = asignacion.asig_programador;
-                td3.innerText = asignacion.asig_app;
+                td2.innerText = asignacion.nombre;
+                td3.innerText = asignacion.app_nombre;
 
                 // ESTRUCTURANDO DOM
                 td4.appendChild(buttonModificar);
@@ -112,7 +112,7 @@ const buscar = async () => {
                 tr.appendChild(td2);
                 tr.appendChild(td3);
                 tr.appendChild(td4);
-                tr.appendChild(td5);
+      
 
                 fragment.appendChild(tr);
 
