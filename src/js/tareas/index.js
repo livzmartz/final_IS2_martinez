@@ -210,37 +210,46 @@ const modificar = async () => {
 };
 
 const eliminar = async (id) => {
-    if (await confirmacion('warning', '¿Desea eliminar este registro?')) {
-        const body = new FormData();
-        body.append('tar_id', id);
-        const url = '/final_IS2_martinez/API/tareas/eliminar'; 
+    const result = await Swal.fire({
+        icon: 'warning',
+        text: '¿Desea eliminar este registro?',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+    });
+
+    if (result.isConfirmed) {
+        const body = new FormData()
+        body.append('tar_id', id)
+        const url = '/final_IS2_martinez/API/tareas/eliminar';
         const config = {
             method: 'POST',
             body
-        };
-        try {
-            const respuesta = await fetch(url, config);
-            const data = await respuesta.json();
+        }
 
+        try {
+            const respuesta = await fetch(url, config)
+            const data = await respuesta.json();
+            console.log(data)
             const { codigo, mensaje, detalle } = data;
 
-            let icon = 'info';
+            let icon = 'info'
             switch (codigo) {
                 case 1:
-                    icon = 'success';
+                    icon = 'success'
                     buscar();
                     break;
 
                 case 0:
-                    icon = 'error';
-                    console.log(detalle);
+                    icon = 'error'
+                    console.log(detalle)
                     break;
 
                 default:
                     break;
             }
 
-            Toast.fire({
+            Swal.fire({
                 icon,
                 text: mensaje
             });
@@ -249,7 +258,7 @@ const eliminar = async (id) => {
             console.log(error);
         }
     }
-};
+}
 
 buscar();
 formularioTareas.addEventListener('submit', guardar);
