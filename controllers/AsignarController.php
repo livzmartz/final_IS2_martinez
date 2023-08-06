@@ -8,10 +8,10 @@ use MVC\Router;
 
 class AsignarController {
     public static function index(Router $router) {
-        $asignar = Asignar::all();
+    
         
         $router->render('asignar/index', [
-            'asignaciones' => $asignar,
+          
         ]);
     }
 
@@ -115,4 +115,4 @@ class AsignarController {
             ]);
         }
     }
-}
+} 

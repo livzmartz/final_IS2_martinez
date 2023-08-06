@@ -123,7 +123,7 @@ const buscar = async () => {
             const tr = document.createElement('tr');
             const td = document.createElement('td');
             td.innerText = 'No existen registros';
-            td.colSpan = 6;
+            td.colSpan = 5;
             tr.appendChild(td);
             fragment.appendChild(tr);
         }

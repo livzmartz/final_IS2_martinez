@@ -13,9 +13,9 @@
             <div class="row mb-3">
                 <label for="prog_grados" class="fs-5">Grado y arma:</label>
                 <select class="form-select" name="prog_grado" id="prog_grado" required>
-                    <option value="">Seleccionar grado y arma</option>
-                    <?php foreach ($Grados as $grado) : ?>
-                        <option value="<?= $grado['GRA_ID'] ?>"><?= $grado['GRA_NOMBRE'] ?></option>
+                    <option value="">Seleccionar...</option>
+                    <?php foreach ($grados as $grado) : ?>
+                        <option value="<?= $grado['gra_id'] ?>"><?= $grado['gra_nombre'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

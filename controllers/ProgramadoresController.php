@@ -8,10 +8,12 @@ use MVC\Router;
 
 class ProgramadoresController {
     public static function index(Router $router) {
-        $programadores = Programadores::all();
+    
+        $grados = static::BuscarGrados();
         
         $router->render('programador/index', [
-            'programadores' => $programadores,
+       
+            'grados' => $grados,
         ]);
     }
 
@@ -121,4 +123,20 @@ class ProgramadoresController {
             ]);
         }
     }
+
+public static function BuscarGrados(){
+
+  
+
+    $sql = "SELECT * FROM grados WHERE gra_sit = '1'";
+
+    try {
+        $grados = Programadores::fetchArray($sql);
+        return $grados;
+    } catch (Exception $e) {
+
+    }
+    
+}
+
 }
