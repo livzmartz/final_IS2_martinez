@@ -106,7 +106,7 @@ class TareasController {
         $tar_descripcion = $_GET['tar_descripcion'];
         $tar_fecha = $_GET['tar_fecha'];
 
-        $sql = "SELECT * FROM tareas WHERE tar_estado = '1'";
+        $sql = "SELECT * FROM tareas inner join aplicaciones on tar_app = app_id WHERE tar_estado = '1'";
         if ($tar_descripcion != '') {
             $sql .= " AND tar_descripcion LIKE '%$tar_descripcion%'";
         }

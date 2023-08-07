@@ -76,7 +76,7 @@ const buscar = async () => {
     try {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-
+        console.log (data)
         tablaTareas.tBodies[0].innerHTML = '';
         const fragment = document.createDocumentFragment();
 
@@ -90,6 +90,7 @@ const buscar = async () => {
                 const td3 = document.createElement('td');
                 const td4 = document.createElement('td');
                 const td5 = document.createElement('td');
+                const td6 = document.createElement('td');
                 const buttonModificar = document.createElement('button');
                 const buttonEliminar = document.createElement('button');
 
@@ -103,17 +104,19 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(tarea.tar_id));
 
                 td1.innerText = contador;
-                td2.innerText = tarea.tar_descripcion;
-                td3.innerText = tarea.tar_fecha;
+                td2.innerText = tarea.app_nombre;
+                td3.innerText = tarea.tar_descripcion;
+                td4.innerText = tarea.tar_fecha;
 
                 // ESTRUCTURANDO DOM
-                td4.appendChild(buttonModificar);
-                td5.appendChild(buttonEliminar);
+                td5.appendChild(buttonModificar);
+                td6.appendChild(buttonEliminar);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
                 tr.appendChild(td4);
                 tr.appendChild(td5);
+                tr.appendChild(td6);
 
                 fragment.appendChild(tr);
 
@@ -123,7 +126,7 @@ const buscar = async () => {
             const tr = document.createElement('tr');
             const td = document.createElement('td');
             td.innerText = 'No existen registros';
-            td.colSpan = 5;
+            td.colSpan = 6;
             tr.appendChild(td);
             fragment.appendChild(tr);
         }
