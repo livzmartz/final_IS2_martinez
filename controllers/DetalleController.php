@@ -1,70 +1,99 @@
 <?php
 
-
 namespace Controllers;
 
-use Exception;
-use Model\Programador;
-use Model\Grado;
-use Model\Aplicacion;
-use Model\Asignacion;
-use Model\Tarea;
 use MVC\Router;
+use Exception;
+use Models\GradoModel;
+use Models\ProgramadorModel;
+use Models\AplicacionModel;
+use Models\AsigProgramadorModel;
+use Models\TareaModel;
 
 class DetalleController
 {
     public static function index(Router $router)
     {
-        $programadoresPorAplicaciones = static::getProgramadoresPorAplicaciones();
+        $detalles = static::getDetalles();
+
         $router->render('detalle/index', [
-            'programadoresPorAplicaciones' => $programadoresPorAplicaciones
+            'detalles' => $detalles
         ]);
     }
 
-    public static function getProgramadoresPorAplicaciones()
+    public static function getDetalles()
     {
         $sql = "
-            SELECT
-                p.prog_id,
-                p.prog_nombres,
-                p.prog_apellidos,
-                p.prog_correo,
-                g.gra_nombre,
-                a.app_nombre,
-                t.tar_descripcion,
-                t.tar_fecha,
-                t.tar_estado
-            FROM
-                programadores p
-                JOIN grados g ON p.prog_grado = g.gra_id
-                JOIN asig_programador ap ON p.prog_id = ap.asig_programador
-                JOIN aplicaciones a ON ap.asig_app = a.app_id
-                JOIN tareas t ON a.app_id = t.tar_app
-            WHERE
-                p.prog_sit = '1'
-                AND g.gra_sit = '1'
-                AND a.app_estado = '1'
-                AND ap.asig_sit = '1'
-                AND t.tar_estado = '1';
-        ";
+        SELECT
+            grados.*,
+            programadores.*,
+            aplicaciones.*,
+            asig_programador.*,
+            tareas.*
+        FROM
+            grados
+        LEFT JOIN programadores ON programadores.prog_grado = grados.gra_id
+        LEFT JOIN asig_programador ON asig_programador.asig_programador = programadores.prog_id
+        LEFT JOIN aplicaciones ON aplicaciones.app_id = asig_programador.asig_app
+        LEFT JOIN tareas ON tareas.tar_app = aplicaciones.app_id
+        WHERE
+            grados.gra_sit = '1'
+            AND programadores.prog_sit = '1'
+            AND aplicaciones.app_estado = '1'
+            AND asig_programador.asig_sit = '1'
+            AND tareas.tar_estado = '1';
+    ";
+    
+    try {
+        $detalles = getDetalles::fetchArray($sql);
 
-        try {
-            // Ejecutar el query y obtener los resultados
-            $programadoresPorAplicaciones = Programador::fetchArray($sql);
+        // Creamos un arreglo para agrupar los detalles por alguna categoría
+        $detallesAgrupados = [];
 
-            // Organizar los resultados por aplicaciones
-            $programadoresPorAplicacionesOrganizados = [];
-            foreach ($programadoresPorAplicaciones as $programadorPorAplicacion) {
-                $appNombre = $programadorPorAplicacion['app_nombre'];
-                if (!isset($programadoresPorAplicacionesOrganizados[$appNombre])) {
-                    $programadoresPorAplicacionesOrganizados[$appNombre] = [];
-                }
-                $programadoresPorAplicacionesOrganizados[$appNombre][] = $programadorPorAplicacion;
+        foreach ($detalles as $detalle) {
+         
+            $categoria = $detalle['nombre_categoria']; 
+
+            if (!isset($detallesAgrupados[$categoria])) {
+                $detallesAgrupados[$categoria] = [];
             }
 
-            return $programadoresPorAplicacionesOrganizados;
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            $detallesAgrupados[$categoria][] = $detalle;
         }
+
+        // Ahora generamos la tabla para cada categoría y sus detalles
+        foreach ($detallesAgrupados as $categoria => $detallesCategoria) {
+            echo "<h2>$categoria</h2>";
+            echo '<table class="table table-bordered">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>No.</th>';
+            echo '<th>Grado Programador</th>';
+            echo '<th>Nombre programador</th>';
+            echo '<th>Asignacion</th>';
+            echo '<th>Descripcion Tarea</th>';
+            echo '<th>Fecha</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            
+            foreach ($detallesCategoria as $indice => $detalle) {
+                echo '<tr>';
+                echo '<td>' . ($indice + 1) . '</td>';
+                echo '<td>' . $detalle['prog_grado'] . '</td>';
+                echo '<td>' . $detalle['prog_nombres'] . '</td>';
+                echo '<td>' . $detalle['asig_id'] . '</td>';
+                echo '<td>' . $detalle['tar_descripcion'] . '</td>';
+                echo '<td>' . $detalle['tar_fecha'] . '</td>';
+                echo '</tr>';
+            }
+        
+            echo '</tbody>';
+            echo '</table>';
+        }
+    } catch (Exception $e) {
+        
+        return [];
     }
-} 
+}
+}
