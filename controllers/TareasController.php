@@ -52,9 +52,17 @@ class TareasController {
 
     public static function modificarAPI() {
         try {
-            $tareas = new Tareas($_POST);
+            $datosTarea = $_POST;
+            
+            // Formatear la fecha
+            $fechaRecibida = $datosTarea['tar_fecha'];
+            $fechaObjeto = date_create($fechaRecibida);
+            $fechaFormateada = date_format($fechaObjeto, 'm/d/Y');
+            $datosTarea['tar_fecha'] = $fechaFormateada;
+    
+            $tareas = new Tareas($datosTarea);
             $resultado = $tareas->actualizar();
-
+    
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
                     'mensaje' => 'Registro modificado correctamente',
@@ -74,13 +82,19 @@ class TareasController {
             ]);
         }
     }
-
     public static function eliminarAPI() {
         try {
             $tar_id = $_POST['tar_id'];
             $tareas = Tareas::find($tar_id);
             $tareas->tar_estado = 0;
-            $resultado = $tareas->actualizar();
+    
+            // Formatear la fecha
+            $fechaRecibida = $tareas->tar_fecha;
+            $fechaObjeto = date_create($fechaRecibida);
+            $fechaFormateada = date_format($fechaObjeto, 'm/d/Y');
+            $tareas->tar_fecha = $fechaFormateada;
+    
+           $resultado = $tareas->actualizar();
 
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
@@ -101,7 +115,7 @@ class TareasController {
             ]);
         }
     }
-
+    
     public static function buscarAPI() {
         $tar_descripcion = $_GET['tar_descripcion'];
         $tar_fecha = $_GET['tar_fecha'];

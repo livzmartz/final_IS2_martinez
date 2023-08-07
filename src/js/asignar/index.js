@@ -261,7 +261,6 @@ const eliminar = async (id) => {
         }
     }
 }
-
 buscar();
 formularioAsignar.addEventListener('submit', guardar);
 btnBuscar.addEventListener('click', buscar);

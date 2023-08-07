@@ -217,8 +217,8 @@ const eliminar = async (id) => {
         icon: 'warning',
         text: '¿Desea eliminar este registro?',
         showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No',
+        confirmButtonText: 'ELIMINAR',
+        cancelButtonText: 'CANCELAR',
     });
 
     if (result.isConfirmed) {

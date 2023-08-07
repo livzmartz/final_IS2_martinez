@@ -72,6 +72,7 @@ class AsignarController {
     }
 
     public static function eliminarAPI() {
+    
         try {
             $asig_id = $_POST['asig_id'];
             $asignar = Asignar::find($asig_id);
@@ -101,6 +102,7 @@ class AsignarController {
     public static function buscarAPI() {
 
         $sql = "    SELECT 
+        asig_id,
         g.gra_nombre || ' ' || p.prog_nombres || ' ' || p.prog_apellidos AS programador, p.prog_id,
         a.app_nombre AS aplicacion, a.app_id
     FROM 

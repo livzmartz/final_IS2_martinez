@@ -225,7 +225,7 @@ const eliminar = async (id) => {
 
     if (result.isConfirmed) {
         const body = new FormData()
-        body.append('gra_id', id)
+        body.append('asig_id', id)
         const url = '/final_IS2_martinez/API/grados/eliminar';
         const config = {
             method: 'POST',
