@@ -7,7 +7,7 @@
             <label for="aplicacion">Seleccione una aplicación:</label>
             <select class="form-select" name="tar_app" id="tar_app">
           <option value="">Seleccionar aplicación</option>
-          <?php foreach ($Aplicacion as $apps) { ?>
+          <?php foreach ($Aplicaciones as $apps) { ?>
             <option value="<?php echo $apps['app_id']; ?>"><?php echo $apps['app_nombre']; ?></option>
           <?php } ?>
         </select>
@@ -20,7 +20,7 @@
       </div>
       <div class="row mb-3">
             <div class="col">
-        <label for="fecha">Fecha de asignacion</label>
+        <label for="fecha">Fecha de asignación</label>
         <input type="date" class="form-control" name="tar_fecha" id="tar_fecha">
       </div>
       <div class="row mb-3">
