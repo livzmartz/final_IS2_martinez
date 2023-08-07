@@ -3,6 +3,7 @@
     <form class="col-lg-8 border bg-light p-3" id="formularioProgramadores">
         <input type="hidden" name="prog_id" id="prog_id">
         <div class="row mb-3">
+        <div class="col">
             <label for="prog_nombre">Nombres:</label>
             <input type="text" class="form-control" name="prog_nombres" id="prog_nombres">
         </div>

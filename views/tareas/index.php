@@ -1,5 +1,5 @@
-<h1 class="text-center">Asignación de tareas</h1>
-<div class="row justify-content-center mb-5">
+<h1 class="text-center mt-3">Asignación de tareas</h1>
+<div class="row justify-content-center">
     <form class="col-lg-8 border bg-light p-3" id="formularioTareas">
         <input type="hidden" name="tar_id" id="tar_id">
         <div class="row mb-3">

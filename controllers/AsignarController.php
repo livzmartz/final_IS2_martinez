@@ -99,15 +99,22 @@ class AsignarController {
     }
 
     public static function buscarAPI() {
-     
-        try {
 
-        $sql = "    select asig_id, gra_nombre || ' ' || prog_nombres || ' ' || prog_apellidos AS nombre, app_nombre from asig_programador
-        inner join programadores on asig_programador = prog_id 
-        inner join grados on gra_id = prog_grado
-        inner join aplicaciones on app_id = asig_app
+        $sql = "    SELECT 
+        g.gra_nombre || ' ' || p.prog_nombres || ' ' || p.prog_apellidos AS programador, p.prog_id,
+        a.app_nombre AS aplicacion, a.app_id
+    FROM 
+        asig_programador ap
+        INNER JOIN programadores p ON ap.asig_programador = p.prog_id
+        INNER JOIN grados g ON p.prog_grado = g.gra_id
+        INNER JOIN aplicaciones a ON ap.asig_app = a.app_id
+    WHERE 
+        ap.asig_sit = '1'
+    ORDER BY 
+        programador, aplicacion;
         ";
 
+        try {
 
             $asignar = Asignar::fetchArray($sql);
             echo json_encode($asignar);
