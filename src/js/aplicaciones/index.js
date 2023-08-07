@@ -71,8 +71,8 @@ const guardar = async (evento) => {
 const buscar = async () => {
   
     const app_nombre = formulario.app_nombre.value;
-    console.log(app_nombre)
-    const url = `final_IS2_martinez/API/aplicaciones/buscar?app_nombre=${app_nombre}`; 
+    
+    const url = `/final_IS2_martinez/API/aplicaciones/buscar?app_nombre=${app_nombre}`;
     const config = {
         method: 'GET'
     }
@@ -93,6 +93,7 @@ const buscar = async () => {
                 const td2 = document.createElement('td');
                 const td3 = document.createElement('td');
                 const td4 = document.createElement('td');
+                
                 const buttonModificar = document.createElement('button');
                 const buttonEliminar = document.createElement('button');
 
@@ -173,7 +174,7 @@ const modificar = async () => {
     const config = {
         method: 'POST',
         body
-    };
+    }
 
     try {
         const respuesta = await fetch(url, config);

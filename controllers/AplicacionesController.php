@@ -93,8 +93,6 @@ class AplicacionesController {
     }
 
     public static function buscarAPI() {
-      
-        try {
         $app_nombre = $_GET['app_nombre'];
 
         $sql = "SELECT * FROM aplicaciones WHERE app_estado = '1'";
@@ -102,9 +100,9 @@ class AplicacionesController {
             $sql .= " AND app_nombre LIKE '%$app_nombre%'";
         }
 
+        try {
             $aplicaciones = Aplicaciones::fetchArray($sql);
-
-            echo json_encode(0);
+            echo json_encode($aplicaciones); // Cambiado 0 a $aplicaciones
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
