@@ -2,8 +2,7 @@
 <div class="row justify-content-center">
     <form class="col-lg-8 border bg-light p-3" id="formularioTareas">
         <input type="hidden" name="tar_id" id="tar_id">
-        <div class="row mb-3">
-            <div class="col">
+            <div class="form-group">
                 <label for="aplicacion">Seleccione una aplicación:</label>
                 <select class="form-select" name="tar_app" id="tar_app">
                     <option value="">Seleccionar aplicación</option>
@@ -14,16 +13,13 @@
             </div>
 
             <div class="row mb-3">
-                <div class="col">
                     <label for="descripcion">Descripción de la tarea:</label>
-
                     <input type="text" class="form-control" name="tar_descripcion" id="tar_descripcion">
-                </div>
+            </div>
                 <div class="row mb-3">
-                    <div class="col">
                         <label for="fecha">Fecha de asignación</label>
                         <input type="date" class="form-control" name="tar_fecha" id="tar_fecha">
-                    </div>
+                </div>
                     <div class="row mb-3">
                         <div class="col">
                             <button type="submit" form="formularioTareas" id="btnGuardar" data-saludo="hola"
@@ -38,7 +34,7 @@
                         <div class="col">
                             <button type="button" id="btnCancelar" class="btn btn-danger w-100">Cancelar</button>
                         </div>
-                    </div>
+            </div>
     </form>
 </div>
 <div class="row justify-content-center" id="divTabla">
