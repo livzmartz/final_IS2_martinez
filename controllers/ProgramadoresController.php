@@ -94,12 +94,14 @@ class ProgramadoresController {
         }
     }
 
+
     public static function buscarAPI() {
         $prog_correo = $_GET['prog_correo'];
-        $prog_nombreS = $_GET['prog_nombres'];
-        $prog_apellidoS = $_GET['prog_apellidos'];
+        $prog_nombreS = $_GET['prog_nombreS'];
+        $prog_apellidoS = $_GET['prog_apellidoS'];
 
-        $sql = "SELECT * FROM programadores WHERE prog_sit = '1'";
+        $sql = "SELECT * FROM programadores inner join grados on prog_grado = gra_id WHERE prog_sit = '1'
+        ";
         if ($prog_correo != '') {
             $sql .= " AND prog_correo LIKE '%$prog_correo%'";
         }
@@ -123,10 +125,7 @@ class ProgramadoresController {
             ]);
         }
     }
-
 public static function BuscarGrados(){
-
-  
 
     $sql = "SELECT * FROM grados WHERE gra_sit = '1'";
 

@@ -2,7 +2,7 @@ import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
-const formulario = document.getElementById('form');
+const formulario = document.getElementById('formularioTareas');
 const tablaTareas = document.getElementById('tablaTareas');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
@@ -36,7 +36,7 @@ const guardar = async (evento) => {
     try {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-
+console.log(data)
         const { codigo, mensaje, detalle } = data;
         let icon = 'info';
         switch (codigo) {

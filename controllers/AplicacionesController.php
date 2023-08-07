@@ -16,6 +16,7 @@ class AplicacionesController {
     }
 
     public static function guardarAPI() {
+      
         try {
             $aplicaciones = new Aplicaciones($_POST);
             $resultado = $aplicaciones->guardar();

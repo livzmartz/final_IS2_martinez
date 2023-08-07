@@ -2,7 +2,7 @@ import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
-const formulario = document.querySelector('formularioProgramadores')
+const formulario = document.querySelector('form')
 const tablaProgramadores = document.getElementById('tablaProgramadores');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
@@ -112,7 +112,7 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(programadores.prog_id))
 
                 td1.innerText = contador;
-                td2.innerText = programadores.prog_grado
+                td2.innerText = programadores.gra_nombre
                 td3.innerText = programadores.prog_nombres
                 td4.innerText = programadores.prog_apellidos
                 td5.innerText = programadores.prog_correo
@@ -143,7 +143,7 @@ const buscar = async () => {
             fragment.appendChild(tr);
         }
 
-        tablaProductos.tBodies[0].appendChild(fragment)
+        tablaProgramadores.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
     }
@@ -203,7 +203,7 @@ const modificar = async () => {
         let icon = 'info'
         switch (codigo) {
             case 1:
-                formularioProgramadores.reset();
+                formulario.reset();
                 icon = 'success'
                 buscar();
                 cancelarAccion();
@@ -229,6 +229,7 @@ const modificar = async () => {
 }
 
 const eliminar = async (id) => {
+    console.log(id)
     const result = await Swal.fire({
         icon: 'warning',
         text: '¿Desea eliminar este registro?',
@@ -239,7 +240,8 @@ const eliminar = async (id) => {
 
     if (result.isConfirmed) {
         const body = new FormData()
-        body.append('asig_id', id)
+        body.append('prog_id', id)
+
         const url = '/final_IS2_martinez/API/programadores/eliminar';
         const config = {
             method: 'POST',

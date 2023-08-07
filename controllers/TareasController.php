@@ -18,9 +18,17 @@ class TareasController {
 
     public static function guardarAPI() {
         try {
-            $tareas = new Tareas($_POST);
-            $resultado = $tareas->guardar();
-
+            $fechaPost = $_POST['tar_fecha'];
+            $fechaObjeto = date_create($fechaPost);
+            $fechaFormateada = date_format($fechaObjeto, 'm/d/Y'); 
+    
+            $datosTarea = $_POST;
+            $datosTarea['tar_fecha'] = $fechaFormateada;
+    
+            $tarea = new Tareas($datosTarea);
+           
+            $resultado = $tarea->guardar();
+    
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
                     'mensaje' => 'Registro guardado correctamente',
@@ -40,6 +48,7 @@ class TareasController {
             ]);
         }
     }
+    
 
     public static function modificarAPI() {
         try {
