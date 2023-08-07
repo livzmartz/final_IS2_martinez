@@ -31,7 +31,7 @@
             <thead class="table-dark">
                 <tr>
                     <th>NO. </th>
-                    <th>NOMBRE</th>
+                    <th>NOMBRE APP</th>
                     <th>MODIFICAR</th>
                     <th>ELIMINAR</th>
                 </tr>
