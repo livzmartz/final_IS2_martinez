@@ -229,7 +229,6 @@ const modificar = async () => {
 }
 
 const eliminar = async (id) => {
-    console.log(id)
     const result = await Swal.fire({
         icon: 'warning',
         text: '¿Desea eliminar este registro?',

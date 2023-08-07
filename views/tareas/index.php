@@ -48,8 +48,8 @@
             <thead class="table-dark">
                 <tr>
                     <th>NO. </th>
-                    <th>TAREA</th>
-                    <th>DESCRIPCION</th>
+                    <th>APLICACIÓN</th>
+                    <th>DESCRIPCIÓN TAREA</th>
                     <th>FECHA</th>
                     <th>MODIFICAR</th>
                     <th>ELIMINAR</th>
