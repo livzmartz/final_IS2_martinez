@@ -67,6 +67,9 @@ const guardar = async (evento) => {
 
 const buscar = async () => {
 
+    let asig_programador = formulario.asig_programador.value;
+    let asig_app = formulario.asig_app.value;
+
     const url = `/final_IS2_martinez/API/asignar/buscar`;
     const config = {
         method: 'GET'
@@ -102,8 +105,8 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(asignar.asig_id));
 
                 td1.innerText = contador;
-                td2.innerText = asignar.nombre;
-                td3.innerText = asignar.app_nombre;
+                td2.innerText = asignar.asig_programador;
+                td3.innerText = asignar.asig_app;
 
                 // ESTRUCTURANDO DOM
                 td4.appendChild(buttonModificar);

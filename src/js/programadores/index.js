@@ -2,7 +2,7 @@ import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
-const formulario = document.querySelector('form')
+const formulario = document.querySelector('formularioProgramadores')
 const tablaProgramadores = document.getElementById('tablaProgramadores');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
@@ -203,7 +203,7 @@ const modificar = async () => {
         let icon = 'info'
         switch (codigo) {
             case 1:
-                formulario.reset();
+                formularioProgramadores.reset();
                 icon = 'success'
                 buscar();
                 cancelarAccion();
@@ -229,46 +229,56 @@ const modificar = async () => {
 }
 
 const eliminar = async (id) => {
-    if(await confirmacion('warning','¿Desea eliminar este registro?')){
+    const result = await Swal.fire({
+        icon: 'warning',
+        text: '¿Desea eliminar este registro?',
+        showCancelButton: true,
+        confirmButtonText: 'ELIMINAR',
+        cancelButtonText: 'CANCELAR',
+    });
+
+    if (result.isConfirmed) {
         const body = new FormData()
-        body.append('producto_id', id)
+        body.append('asig_id', id)
         const url = '/final_IS2_martinez/API/programadores/eliminar';
         const config = {
-            method : 'POST',
+            method: 'POST',
             body
         }
+
         try {
             const respuesta = await fetch(url, config)
             const data = await respuesta.json();
             console.log(data)
-            const {codigo, mensaje,detalle} = data;
-    
+            const { codigo, mensaje, detalle } = data;
+
             let icon = 'info'
             switch (codigo) {
                 case 1:
                     icon = 'success'
                     buscar();
                     break;
-            
+
                 case 0:
                     icon = 'error'
                     console.log(detalle)
                     break;
-            
+
                 default:
                     break;
             }
-    
-            Toast.fire({
+
+            Swal.fire({
                 icon,
                 text: mensaje
-            })
-    
+            });
+
         } catch (error) {
             console.log(error);
         }
     }
 }
+
 buscar();
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
