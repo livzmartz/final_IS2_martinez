@@ -71,9 +71,9 @@ const guardar = async (evento) => {
 
 const buscar = async () => {
   
-    const app_nombre = formulario.app_nombre.value;
+    let app_nombre = formulario.app_nombre.value;
    
-    const url = `final_IS2_martinez/API/aplicaciones/buscar?app_nombre=${app_nombre}`; 
+    const url = `/final_IS2_martinez/API/aplicaciones/buscar?app_nombre=${app_nombre}`; 
     const config = {
         method: 'GET'
     }
@@ -103,8 +103,8 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar';
                 buttonEliminar.textContent = 'Eliminar';
 
-                buttonModificar.addEventListener('click', () => colocarDatos(aplicacion));
-                buttonEliminar.addEventListener('click', () => eliminar(aplicacion.app_id));
+                buttonModificar.addEventListener('click', () => colocarDatos(aplicaciones));
+                buttonEliminar.addEventListener('click', () => eliminar(aplicaciones.app_id));
 
                 td1.innerText = contador;
                 td2.innerText = aplicaciones.app_nombre;
