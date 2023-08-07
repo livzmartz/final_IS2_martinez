@@ -1,36 +1,33 @@
-<div class="row justify-content-center" id="divTabla">
-    <div class="col-lg-8">
-        <h2>Detalle de las aplicaciones:</h2>
-        <table class="table table-bordered table-hover" id="tablaDetalles">
-            <thead class="table-dark">
-                        <tr>
-                            <th>NO. </th>
-                            <th>APLICACIÓN</th>
-                            <th>VER</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-    <?php if (count($tareas) > 0) : ?>
-        <?php foreach ($tareas as $key => $tareas) : ?>
-            <tr>
-                <td><?= $key + 1 ?></td>
-                <td><?= $tareas['app_nombre'] ?></td>
-                <td>
-                    <?php if ($tareas['app_estado'] == 1) { ?>
-                    <?php } else { ?>
-                        no asignada aún
-                    <?php } ?>
-                </td>  
-            </tr>
-        <?php endforeach ?>
-    <?php else : ?>
-        <tr>
-            <td colspan="4">NO EXISTEN REGISTROS</td>
-        </tr>
-    <?php endif ?>
-</tbody>
-                </table>
-        </div>
-    </div>   
-</div>
-<script src="<?= asset('./build/js/detalles/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/shows/index.js')  ?>"></script>  
+    <h1>Detalle de las aplicaciones</h1>
+
+    <?php foreach ($detallesAgrupados as $categoria => $detallesCategoria): ?>
+        <h2><?php echo $categoria; ?></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Grado Programador</th>
+                    <th>Nombre programador</th>
+                    <th>Asignacion Aplicación</th>
+                    <th>Descripcion Tarea</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($detallesCategoria as $indice => $detalle): ?>
+                    <tr>
+                        <td><?php echo $indice + 1; ?></td>
+                        <td><?php echo $detalle['prog_grado']; ?></td>
+                        <td><?php echo $detalle['prog_nombres']; ?></td>
+                        <td><?php echo $detalle['asig_id']; ?></td>
+                        <td><?php echo $detalle['tar_descripcion']; ?></td>
+                        <td><?php echo $detalle['tar_fecha']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endforeach; ?>
+
+    <a href="/final_IS2_martinez/" class="btn btn-primary">Salir</a>
+

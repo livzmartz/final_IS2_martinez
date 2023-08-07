@@ -9,6 +9,8 @@ use Controllers\ProgramadoresController;
 use Controllers\AplicacionesController;
 use Controllers\AsignarController;
 use Controllers\TareasController;
+use Controllers\DetalleController;
+
 
 $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
@@ -45,4 +47,7 @@ $router->post('/API/asignar/modificar', [AsignarController::class,'modificarAPI'
 $router->post('/API/asignar/eliminar', [AsignarController::class,'eliminarAPI'] );
 $router->get('/API/asignar/buscar', [AsignarController::class,'buscarAPI'] );
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
+
+$router->get('/detalle', [DetalleController::class,'index'] );
+
 $router->comprobarRutas();
