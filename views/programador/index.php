@@ -12,7 +12,7 @@
             </div>
             <div class="row mb-3">
                 <label for="prog_grados" class="fs-5">Grado y arma:</label>
-                <select class="form-select" name="prog_grado" id="prog_grado" required>
+                <select class="form-select" name="prog_grado" id="prog_grado">
                     <option value="">Seleccionar...</option>
                     <?php foreach ($grados as $grado) : ?>
                         <option value="<?= $grado['gra_id'] ?>"><?= $grado['gra_nombre'] ?></option>

@@ -102,7 +102,7 @@ class AplicacionesController {
 
         try {
             $aplicaciones = Aplicaciones::fetchArray($sql);
-            echo json_encode($aplicaciones); // Cambiado 0 a $aplicaciones
+            echo json_encode($aplicaciones); 
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
