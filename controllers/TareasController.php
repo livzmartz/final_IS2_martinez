@@ -10,7 +10,6 @@ class TareasController {
     public static function index(Router $router) {
         
         $aplicaciones = static::BuscarAplicaciones();
-       
         
         $router->render('tareas/index', [
             'aplicaciones' => $aplicaciones,
@@ -121,14 +120,11 @@ class TareasController {
     public static function BuscarAplicaciones(){
         $sql = "SELECT * FROM aplicaciones WHERE app_estado = '1'";
 
-    try {
-        $aplicaciones = Tareas::fetchArray($sql);
-        return $aplicaciones;
-    } catch (Exception $e) {
-
+        try {
+            $aplicaciones = Tareas::fetchArray($sql);
+            return $aplicaciones;
+        } catch (Exception $e) {
+           
+        }
     }
-    
-}
-
-
 }
