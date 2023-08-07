@@ -171,6 +171,8 @@ const modificar = async () => {
 
     const body = new FormData(formulario);
     const url = '/final_IS2_martinez/API/aplicaciones/modificar'; 
+    const headers = new Headers();
+    headers.append("X-Requested-With", "fetch");
     const config = {
         method: 'POST',
         body
