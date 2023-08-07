@@ -6,7 +6,7 @@ use MVC\Router;
 use Controllers\AppController;
 use Controllers\GradosController;
 use Controllers\ProgramadoresController;
-use Controllers\AplicacionController;
+use Controllers\AplicacionesController;
 use Controllers\AsignarController;
 use Controllers\TareasController;
 
@@ -27,11 +27,11 @@ $router->post('/API/programadores/modificar', [ProgramadoresController::class,'m
 $router->post('/API/programadores/eliminar', [ProgramadoresController::class,'eliminarAPI'] );
 $router->get('/API/programadores/buscar', [ProgramadoresController::class,'buscarAPI'] );
 
-$router->get('/aplicaciones', [AplicacionController::class,'index'] );
-$router->post('/API/aplicaciones/guardar', [AplicacionController::class,'guardarAPI'] );
-$router->post('/API/aplicaciones/modificar', [AplicacionController::class,'modificarAPI'] );
-$router->post('/API/aplicaciones/eliminar', [AplicacionController::class,'eliminarAPI'] );
-$router->get('/API/aplicaciones/buscar', [AplicacionController::class,'buscarAPI'] );
+$router->get('/aplicaciones', [AplicacionesController::class,'index'] );
+$router->post('/API/aplicaciones/guardar', [AplicacionesController::class,'guardarAPI'] );
+$router->post('/API/aplicaciones/modificar', [AplicacionesController::class,'modificarAPI'] );
+$router->post('/API/aplicaciones/eliminar', [AplicacionesController::class,'eliminarAPI'] );
+$router->get('/API/aplicaciones/buscar', [AplicacionesController::class,'buscarAPI'] );
 
 $router->get('/tareas', [TareasController::class,'index'] );
 $router->post('/API/tareas/guardar', [TareasController::class,'guardarAPI'] );

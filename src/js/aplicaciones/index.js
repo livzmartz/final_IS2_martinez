@@ -1,8 +1,7 @@
 import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
-
-const formularioAplicaciones = document.getElementById('form');
+const formulario = document.getElementById('form');
 const tablaAplicaciones = document.getElementById('tablaAplicaciones');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
@@ -16,6 +15,7 @@ btnCancelar.disabled = true
 btnCancelar.parentElement.style.display = 'none'
 
 const guardar = async (evento) => {
+
     evento.preventDefault();
     if (!validarFormulario(formulario, ['app_id'])) {
         Toast.fire({
@@ -27,6 +27,7 @@ const guardar = async (evento) => {
 
     const body = new FormData(formulario);
     body.delete('app_id');
+    
     const url = '/final_IS2_martinez/API/aplicaciones/guardar';
     const config = {
         method: 'POST',
@@ -36,6 +37,8 @@ const guardar = async (evento) => {
     try {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
+
+        console.log(data);
 
         const { codigo, mensaje, detalle } = data;
         let icon = 'info';
@@ -66,7 +69,9 @@ const guardar = async (evento) => {
 };
 
 const buscar = async () => {
+  
     const app_nombre = formulario.app_nombre.value;
+    console.log(app_nombre)
     const url = `final_IS2_martinez/API/aplicaciones/buscar?app_nombre=${app_nombre}`; 
     const config = {
         method: 'GET'
@@ -81,7 +86,7 @@ const buscar = async () => {
 
         if (data.length > 0) {
             let contador = 1;
-            data.forEach( aplicacion => {
+            data.forEach( aplicaciones => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td');
@@ -97,11 +102,11 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar';
                 buttonEliminar.textContent = 'Eliminar';
 
-                buttonModificar.addEventListener('click', () => colocarDatos(aplicacion));
-                buttonEliminar.addEventListener('click', () => eliminar(aplicacion.app_id));
+                buttonModificar.addEventListener('click', () => colocarDatos(aplicaciones));
+                buttonEliminar.addEventListener('click', () => eliminar(aplicaciones.app_id));
 
                 td1.innerText = contador;
-                td2.innerText = aplicacion.app_nombre;
+                td2.innerText = aplicaciones.app_nombre;
                 
                  // ESTRUCTURANDO DOM
                 td3.appendChild(buttonModificar)
@@ -256,7 +261,7 @@ const eliminar = async (id) => {
 
 
 buscar();
-formularioAplicaciones.addEventListener('submit', guardar);
+formulario.addEventListener('submit', guardar);
 btnBuscar.addEventListener('click', buscar);
 btnCancelar.addEventListener('click', cancelarAccion);
 btnModificar.addEventListener('click', modificar);

@@ -30,7 +30,7 @@
         <table class="table table-bordered table-hover" id="tablaGrados">
             <thead class="table-dark">
                 <tr>
-                    <th>NO. </th>
+                    <th>NO.</th>
                     <th>GRADO Y ARMA</th>
                     <th>MODIFICAR</th>
                     <th>ELIMINAR</th>

@@ -3,22 +3,22 @@
 namespace Controllers;
 
 use Exception;
-use Model\Aplicacion;
+use Model\Aplicaciones;
 use MVC\Router;
 
-class AplicacionController {
+class AplicacionesController {
     public static function index(Router $router) {
-        $aplicacion = Aplicacion::all();
+        $aplicaciones = Aplicaciones::all();
         
         $router->render('aplicaciones/index', [
-            'aplicacion' => $aplicacion,
+            'aplicaciones' => $aplicaciones,
         ]);
     }
 
     public static function guardarAPI() {
         try {
-            $aplicacion = new Aplicacion($_POST);
-            $resultado = $aplicacion->crear();
+            $aplicaciones = new Aplicaciones($_POST);
+            $resultado = $aplicaciones->guardar();
 
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
@@ -42,8 +42,8 @@ class AplicacionController {
 
     public static function modificarAPI() {
         try {
-            $aplicacion = new Aplicacion($_POST);
-            $resultado = $aplicacion->actualizar();
+            $aplicaciones = new Aplicaciones($_POST);
+            $resultado = $aplicaciones->actualizar();
 
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
@@ -68,9 +68,9 @@ class AplicacionController {
     public static function eliminarAPI() {
         try {
             $app_id = $_POST['app_id'];
-            $aplicacion = Aplicacion::find($app_id);
-            $aplicacion->app_estado = 0;
-            $resultado = $aplicacion->actualizar();
+            $aplicaciones = Aplicaciones::find($app_id);
+            $aplicaciones->app_estado = 0;
+            $resultado = $aplicaciones->actualizar();
 
             if ($resultado['resultado'] == 1) {
                 echo json_encode([
@@ -93,6 +93,8 @@ class AplicacionController {
     }
 
     public static function buscarAPI() {
+      
+        try {
         $app_nombre = $_GET['app_nombre'];
 
         $sql = "SELECT * FROM aplicaciones WHERE app_estado = '1'";
@@ -100,9 +102,9 @@ class AplicacionController {
             $sql .= " AND app_nombre LIKE '%$app_nombre%'";
         }
 
-        try {
-            $aplicacion = Aplicacion::fetchArray($sql);
-            echo json_encode($aplicacion);
+            $aplicaciones = Aplicaciones::fetchArray($sql);
+
+            echo json_encode(0);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
