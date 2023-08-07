@@ -8,7 +8,7 @@
             <select class="form-select" name="tar_app" id="tar_app">
           <option value="">Seleccionar aplicación</option>
           <?php foreach ($Aplicacion as $apps) { ?>
-            <option value="<?php echo $apps['APP_ID']; ?>"><?php echo $apps['APP_NOMBRE']; ?></option>
+            <option value="<?php echo $apps['app_id']; ?>"><?php echo $apps['app_nombre']; ?></option>
           <?php } ?>
         </select>
       </div>
