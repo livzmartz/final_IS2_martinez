@@ -140,33 +140,33 @@ const colocarDatos = (datos) => {
     formulario.app_nombre.value = datos.app_nombre;
     formulario.app_id.value = datos.app_id;
 
-    btnGuardar.disabled = true;
-    btnGuardar.parentElement.style.display = 'none';
-    btnBuscar.disabled = true;
-    btnBuscar.parentElement.style.display = 'none';
-    btnModificar.disabled = false;
-    btnModificar.parentElement.style.display = '';
-    btnCancelar.disabled = false;
-    btnCancelar.parentElement.style.display = '';
-    divTabla.style.display = 'none';
+    btnGuardar.disabled = true
+    btnGuardar.parentElement.style.display = 'none'
+    btnBuscar.disabled = true
+    btnBuscar.parentElement.style.display = 'none'
+    btnModificar.disabled = false
+    btnModificar.parentElement.style.display = ''
+    btnCancelar.disabled = false
+    btnCancelar.parentElement.style.display = ''
+    divTabla.style.display = 'none'
 };
 
 const cancelarAccion = () => {
-    btnGuardar.disabled = false;
-    btnGuardar.parentElement.style.display = '';
-    btnBuscar.disabled = false;
-    btnBuscar.parentElement.style.display = '';
-    btnModificar.disabled = true;
-    btnModificar.parentElement.style.display = 'none';
-    btnCancelar.disabled = true;
-    btnCancelar.parentElement.style.display = 'none';
-    divTabla.style.display = '';
+    btnGuardar.disabled = false
+    btnGuardar.parentElement.style.display = ''
+    btnBuscar.disabled = false
+    btnBuscar.parentElement.style.display = ''
+    btnModificar.disabled = true
+    btnModificar.parentElement.style.display = 'none'
+    btnCancelar.disabled = true
+    btnCancelar.parentElement.style.display = 'none'
+    divTabla.style.display = ''
 };
 
 const modificar = async () => {
     if (!validarFormulario(formulario)) {
         alert('Debe llenar todos los campos');
-        return;
+        return
     }
 
     const body = new FormData(formulario);
@@ -177,22 +177,22 @@ const modificar = async () => {
     }
 
     try {
-        const respuesta = await fetch(url, config);
+        const respuesta = await fetch(url, config)
         const data = await respuesta.json();
 
         const { codigo, mensaje, detalle } = data;
-        let icon = 'info';
+        let icon = 'info'
         switch (codigo) {
             case 1:
                 formulario.reset();
-                icon = 'success';
+                icon = 'success'
                 buscar();
                 cancelarAccion();
                 break;
 
             case 0:
-                icon = 'error';
-                console.log(detalle);
+                icon = 'error'
+                console.log(detalle)
                 break;
 
             default:
@@ -262,7 +262,7 @@ const eliminar = async (id) => {
 
 
 buscar();
-formulario.addEventListener('submit', guardar);
-btnBuscar.addEventListener('click', buscar);
-btnCancelar.addEventListener('click', cancelarAccion);
-btnModificar.addEventListener('click', modificar);
+formulario.addEventListener('submit', guardar )
+btnBuscar.addEventListener('click', buscar)
+btnCancelar.addEventListener('click', cancelarAccion)
+btnModificar.addEventListener('click', modificar)
