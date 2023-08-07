@@ -65,9 +65,13 @@ class AplicacionesController {
         }
     }
 
+    
     public static function eliminarAPI() {
+        
+   
         try {
             $app_id = $_POST['app_id'];
+      
             $aplicaciones = Aplicaciones::find($app_id);
             $aplicaciones->app_estado = 0;
             $resultado = $aplicaciones->actualizar();
@@ -91,7 +95,6 @@ class AplicacionesController {
             ]);
         }
     }
-
     public static function buscarAPI() {
         $app_nombre = $_GET['app_nombre'];
 

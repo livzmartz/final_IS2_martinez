@@ -96,8 +96,8 @@ class ProgramadoresController {
 
     public static function buscarAPI() {
         $prog_correo = $_GET['prog_correo'];
-        $prog_nombreS = $_GET['prog_nombreS'];
-        $prog_apellidoS = $_GET['prog_apellidoS'];
+        $prog_nombreS = $_GET['prog_nombres'];
+        $prog_apellidoS = $_GET['prog_apellidos'];
 
         $sql = "SELECT * FROM programadores WHERE prog_sit = '1'";
         if ($prog_correo != '') {

@@ -212,6 +212,7 @@ const modificar = async () => {
 };
 
 const eliminar = async (id) => {
+    console.log(id)
     const result = await Swal.fire({
         icon: 'warning',
         text: '¿Desea eliminar este registro?',
@@ -223,7 +224,8 @@ const eliminar = async (id) => {
     if (result.isConfirmed) {
         const body = new FormData()
         body.append('app_id', id)
-        const url = '/final_IS2_martinez/API/apicaciones/eliminar';
+
+        const url = '/final_IS2_martinez/API/aplicaciones/eliminar';
         const config = {
             method: 'POST',
             body
