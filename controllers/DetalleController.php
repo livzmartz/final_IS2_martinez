@@ -4,11 +4,11 @@ namespace Controllers;
 
 use MVC\Router;
 use Exception;
-use Models\GradoModel;
-use Models\ProgramadorModel;
-use Models\AplicacionModel;
-use Models\AsigProgramadorModel;
-use Models\TareaModel;
+use Model\Grados;
+use Model\Programadores;
+use Model\Aplicaciones;
+use Model\Asignar;
+use Model\Tareas;
 
 class DetalleController
 {
